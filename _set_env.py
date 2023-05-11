@@ -1,7 +1,5 @@
 from os.path import dirname, join, isfile
 
-# Set the environment variables
-
 
 def set_env(self):
     ENV_PATH = join(dirname(__file__), '.env')
