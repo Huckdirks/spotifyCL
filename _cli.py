@@ -1,4 +1,6 @@
 import argparse
+#import spotify_controls
+from spotify_controls import play
 
 def parse_args(self):
     parser = argparse.ArgumentParser(prog="spotify", description="Control Spotify from the command line", epilog="Made by Huck Dirksmeier")
@@ -19,9 +21,9 @@ def parse_args(self):
     queue_group.add_argument("-l", "--list", help="Playlist name")
     queue_group.add_argument("-u", "--uri", help="Spotify URI")
 
-    next_parser = subparsers.add_parser("next", aliases=["n"], help="Skip to the next song")
+    subparsers.add_parser("next", aliases=["n"], help="Skip to the next song")
 
-    back_parser = subparsers.add_parser("back", aliases=["b"], help="Skip to the previous song")
+    subparsers.add_parser("back", aliases=["b"], help="Skip to the previous song")
 
     volume_parser = subparsers.add_parser("volume", aliases=["v"], help="Change the volume of the player")
     volume_group = volume_parser.add_mutually_exclusive_group()
@@ -29,31 +31,40 @@ def parse_args(self):
     volume_group.add_argument("-u", "--up", action="store_true", help="Increase volume by 10")
     volume_group.add_argument("-d", "--down", action="store_true", help="Decrease volume by 10")
 
-    status_parser = subparsers.add_parser("status", aliases=["s"], help="Get the current status of the player")
+    subparsers.add_parser("status", aliases=["s"], help="Get the current status of the player")
 
     toggle_parser = subparsers.add_parser("toggle", aliases=["t"], help="Toggle shuffle or repeat")
     toggle_group = toggle_parser.add_mutually_exclusive_group()
     toggle_group.add_argument("-s", "--shuffle", action="store_true", help="Toggle shuffle")
     toggle_group.add_argument("-r", "--repeat", action="store_true", help="Toggle repeat")
 
-    return arg_selector(parser)
+    return _arg_selector(parser)
 
 
-def arg_selector(parser):
+def _arg_selector(parser):
     args = parser.parse_args()
 
     #if args.command == "play" or args.command == "p":
     if args.command in ["play", "p"]:
-        if args.album:
-            print(args.album)
+        player = play.spotify_play()
+        if args.song:
+            #print(args.song)
+            player.play_track(args.song)
+        elif args.album:
+            #print(args.album)
+            player.play_album(args.album)
         elif args.band:
-            print(args.band)
+            #print(args.band)
+            player.play_artist(args.band)
         elif args.list:
-            print(args.list)
+            #print(args.list)
+            player.play_playlist(args.list)
         elif args.uri:
-            print(args.uri)
+            #print(args.uri)
+            player.play_uri(args.uri)
         else:
-            print(args.song)
+            player.play_pause()
+
 
     elif args.command in ["queue", "q"]:
         if args.album:
