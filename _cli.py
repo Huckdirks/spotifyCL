@@ -1,7 +1,7 @@
 # Libraries
 import argparse
 import spotipy
-from pprint import pprint
+from termcolor import cprint
 
 # Local
 from spotify_controls import set_credentials
@@ -102,12 +102,26 @@ def _arg_selector(parser):
 
     elif args.command in ["toggle", "t"]:
         if args.shuffle:
-            print(args.shuffle)
+            if sp.current_playback()["shuffle_state"] == True:
+                sp.shuffle(False)
+                cprint("Shuffle is now off", "red", attrs=["bold"])
+            else:
+                sp.shuffle(True)
+                cprint("Shuffle is now on", "green", attrs=["bold"])
+
         elif args.repeat:
-            print(args.repeat)
+            if sp.current_playback()["repeat_state"] == "off":
+                sp.repeat("context")
+                cprint("Repeat is now on", "green", attrs=["bold"])
+            elif sp.current_playback()["repeat_state"] == "context":
+                sp.repeat("track")
+                cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
+            else:
+                sp.repeat("off")
+                cprint("Repeat is now off", "red", attrs=["bold"])
+
         else:
-            # Help message
             return parser.print_help()
+        
     else:
-        # Help message
         return parser.print_help()
