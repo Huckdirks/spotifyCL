@@ -1,6 +1,8 @@
 import argparse
-#import spotify_controls
+import spotipy
+from spotify_controls import set_credentials
 from spotify_controls import play
+from spotify_controls import queue
 
 def parse_args(self):
     parser = argparse.ArgumentParser(prog="spotify", description="Control Spotify from the command line", epilog="Made by Huck Dirksmeier")
@@ -26,10 +28,7 @@ def parse_args(self):
     subparsers.add_parser("back", aliases=["b"], help="Skip to the previous song")
 
     volume_parser = subparsers.add_parser("volume", aliases=["v"], help="Change the volume of the player")
-    volume_group = volume_parser.add_mutually_exclusive_group()
-    volume_group.add_argument("level", nargs="?", type=int, help="Volume level (0-100)")
-    volume_group.add_argument("-u", "--up", action="store_true", help="Increase volume by 10")
-    volume_group.add_argument("-d", "--down", action="store_true", help="Decrease volume by 10")
+    volume_parser.add_argument("level", nargs="?", type=int, help="Volume level (0-100)")
 
     subparsers.add_parser("status", aliases=["s"], help="Get the current status of the player")
 
@@ -43,10 +42,12 @@ def parse_args(self):
 
 def _arg_selector(parser):
     args = parser.parse_args()
+    # Spotify Client
+    sp: spotipy.Spotify = set_credentials.set_credentials()
 
     #if args.command == "play" or args.command == "p":
     if args.command in ["play", "p"]:
-        player = play.spotify_play()
+        player = play.spotify_play(sp)
         if args.song:
             #print(args.song)
             player.play_track(args.song)
@@ -67,22 +68,27 @@ def _arg_selector(parser):
 
 
     elif args.command in ["queue", "q"]:
-        if args.album:
-            print(args.album)
+        queuer = queue.spotify_queue(sp)
+        if args.song:
+            #print(args.song)
+            queuer.queue_track(args.song)
+        elif args.album:
+            queuer.queue_album(args.album)
+            #print(args.album)
         elif args.list:
-            print(args.list)
+            queuer.queue_playlist(args.list)
+            #print(args.list)
         elif args.uri:
-            print(args.uri)
+            queuer.queue_uri(args.uri)
+            #print(args.uri)
         else:
-            print(args.song)
+            return parser.print_help()
 
     elif args.command in ["next", "n"]:
-        # Code for next command
-        pass
+        sp.next_track()
 
     elif args.command in ["back", "b"]:
-        # Code for back command
-        pass
+        sp.previous_track()
 
     elif args.command in ["status", "s"]:
         # Code for status command
@@ -90,14 +96,9 @@ def _arg_selector(parser):
 
     elif args.command in ["volume", "v"]:
         if args.level:
-            print(args.level)
-        elif args.up:
-            print(args.up)
-        elif args.down:
-            print(args.down)
+            sp.volume(args.level)
         else:
-            # Get current volume
-            pass
+            return parser.print_help()
 
     elif args.command in ["toggle", "t"]:
         if args.shuffle:

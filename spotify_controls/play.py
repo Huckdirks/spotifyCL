@@ -1,10 +1,9 @@
 import spotipy
-from .set_credentials import set_credentials
 from .search import search
 
 class spotify_play:
-    def __init__(self):
-        self.sp: spotipy.Spotify = set_credentials()
+    def __init__(self, sp: spotipy.Spotify):
+        self.sp: spotipy.Spotify = sp
 
     def play_pause(self):
         # If the song is playing, pause it
