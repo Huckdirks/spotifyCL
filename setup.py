@@ -16,9 +16,15 @@ setup(
     long_description = LONG_DESCRIPTION,
     long_description_content_type = "text/markdown",
     url = "https://github.com/Huckdirks/spotify-cl",
-    packages = find_packages(),
+    #packages = find_packages(),
+    packages=["spotify-cl"],
     install_requires = ["python-dotenv", "spotipy", "termcolor"],
-    scripts=["spotify-cl/spotify"],
+    entry_points = {
+        "console_scripts": [
+            "spotify-cl = spotify-cl.spotify:main"
+        ]
+    },
+    #scripts=["spotify-cl/spotify"],
     keywords = ["Spotify", "API", "Spotify API", "Web API"],
     classifiers = [
         "Programming Language :: Python",
