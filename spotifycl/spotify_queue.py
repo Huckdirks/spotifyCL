@@ -19,7 +19,7 @@ class spotify_queue:
         if RESULT:
             URI = RESULT['uri']
             self.sp.add_to_queue(URI)
-            cprint("Spotify Queue'd:", "green", attrs=["bold"])
+            cprint("Spotify Queued:", "green", attrs=["bold"])
             cprint("Song: " + str(RESULT["name"]), "cyan")
             cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
             cprint("Album: " + str(RESULT["album"]["name"]), "cyan")
@@ -34,7 +34,7 @@ class spotify_queue:
             # Add all the tracks to the queue
             for TRACK in TRACKS:
                 self.sp.add_to_queue(TRACK)
-            cprint("Spotify Queue'd:", "green", attrs=["bold"])
+            cprint("Spotify Queued:", "green", attrs=["bold"])
             cprint("Album: " + str(RESULT["name"]), "cyan")
             cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
         return
@@ -48,13 +48,13 @@ class spotify_queue:
             # Add all the tracks to the queue
             for TRACK in TRACKS:
                 self.sp.add_to_queue(TRACK)
-            cprint("Spotify Queue'd:", "green", attrs=["bold"])
+            cprint("Spotify Queued:", "green", attrs=["bold"])
             cprint("Playlist: " + str(RESULT["name"]), "cyan")
             cprint("Owner: " + str(RESULT["owner"]["display_name"]), "cyan")
         return
     
     def queue_uri(self, URI: str):
         self.sp.add_to_queue(URI)
-        cprint("Spotify Queue'd:", "green", attrs=["bold"])
+        cprint("Spotify Queued:", "green", attrs=["bold"])
         cprint("URI: " + str(URI), "cyan")
         return
