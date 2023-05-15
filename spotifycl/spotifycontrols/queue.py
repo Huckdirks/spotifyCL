@@ -3,20 +3,16 @@ import spotipy
 from termcolor import cprint
 
 # Local Files
-#from .search import search
-#from .status import spotify_status
-import search
-#import status
+from .search import search
+from .status import spotify_status
 
 class spotify_queue:
-    #def __init__(self, sp: spotipy.Spotify):
-    def __init__(self, sp):
-        self.sp = sp
-        #self.status = spotify_status(self.sp)
-        #self.status = status.spotify_status(self.sp)
+    def __init__(self, sp: spotipy.Spotify):
+        self.sp: spotipy.Spotify = sp
+        self.status = spotify_status(self.sp)
 
     def queue_track(self, NAME: str):
-        RESULT = search.search(self.sp, NAME, 'track')
+        RESULT = search(self.sp, NAME, 'track')
         if RESULT:
             URI = RESULT['uri']
             self.sp.add_to_queue(URI)
@@ -27,7 +23,7 @@ class spotify_queue:
         return
     
     def queue_album(self, NAME: str):
-        RESULT = search.search(self.sp, NAME, 'album')
+        RESULT = search(self.sp, NAME, 'album')
         if RESULT:
             # Get the URI of all the tracks in the album
             TRACKS = self.sp.album_tracks(RESULT['uri'])
@@ -41,7 +37,7 @@ class spotify_queue:
         return
     
     def queue_playlist(self, NAME: str):
-        RESULT = search.search(self.sp, NAME, 'playlist')
+        RESULT = search(self.sp, NAME, 'playlist')
         if RESULT:
             # Get the URI of all the tracks in the playlist
             TRACKS = self.sp.playlist_tracks(RESULT['uri'])

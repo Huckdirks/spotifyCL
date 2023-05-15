@@ -1,7 +1,6 @@
-#import spotipy
+import spotipy
 
-#def search(sp: spotipy.Spotify, NAME: str, TYPE: str):
-def search(sp, NAME: str, TYPE: str):
+def search(sp: spotipy.Spotify, NAME: str, TYPE: str):
     RESULT = sp.search(NAME, type=TYPE, limit=1)
     if RESULT[TYPE + 's']['total'] == 0:
         return None

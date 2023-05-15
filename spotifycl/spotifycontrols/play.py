@@ -3,16 +3,13 @@ import spotipy
 from termcolor import cprint
 
 # Local Files
-""" from .search import search
-from .status import spotify_status """
-import search
-#import status
+from .search import search
+from .status import spotify_status
 
 class spotify_play:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
-        #self.status = spotify_status(self.sp)
-        #self.status = status.spotify_status(self.sp)
+        self.status = spotify_status(self.sp)
 
     def play_pause(self):
         # If the song is playing, pause it
