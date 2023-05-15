@@ -8,7 +8,7 @@ def set_credentials():
     ENV_PATH = join(dirname(dirname(__file__)), '.env')
     if not isfile(ENV_PATH):
         print(".env file not found")
-        return
+        exit()
     
     load_dotenv(ENV_PATH)
     scope = "user-read-playback-state user-modify-playback-state"

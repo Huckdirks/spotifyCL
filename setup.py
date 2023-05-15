@@ -9,7 +9,7 @@ with open(README_PATH, "r") as fh:
 
 setup(
     name = "spotify-cl",
-	version = "1.0.0.16",
+	version = "1.0.0.17",
     author = "Huck Dirksmeier",
     author_email = "Huckdirks@gmail.com",
     description = "A command line interface for Spotify",
