@@ -1,6 +1,11 @@
-from ._cli import *
-from ._set_env import *
+from .cli import *
+from .set_env import *
 from .spotify import *
+from .spotify_play import *
+from .spotify_queue import *
+from .spotify_status import *
+from .set_credentials import *
+
 """ #import spotify_controls
 from .spotify_controls import *
 import spotify_controls.set_credentials

@@ -1,7 +1,7 @@
 
 class spotify_cli:
-    from _set_env import set_env
-    from _cli import parse_args
+    from set_env import set_env
+    from cli import parse_args
 
     def __init__(self):
         self.set_env()

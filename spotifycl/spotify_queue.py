@@ -3,13 +3,16 @@ import spotipy
 from termcolor import cprint
 
 # Local Files
-from .search import search
-from .status import spotify_status
+from search import search
+from spotify_status import spotify_status
 
 class spotify_queue:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
         self.status = spotify_status(self.sp)
+    """ def __init__(self, sp):
+        self.sp = sp
+        self.status = spotify_status(self.sp) """
 
     def queue_track(self, NAME: str):
         RESULT = search(self.sp, NAME, 'track')
