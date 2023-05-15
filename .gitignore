@@ -4,6 +4,6 @@ __pycache__/
 
 # Files
 .DS_Store
-*.env
+*.env*
 .cache
 pypi_uploader.py

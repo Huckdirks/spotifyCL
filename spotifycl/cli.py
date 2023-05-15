@@ -4,18 +4,6 @@ import spotipy
 from termcolor import cprint
 
 # Local
-""" from spotify_controls import set_credentials
-from spotify_controls import play
-from spotify_controls import queue
-from spotify_controls import status """
-""" import spotify_controls.set_credentials
-import spotify_controls.play
-import spotify_controls.queue
-import spotify_controls.status """
-""" import spotifycontrols.set_credentials
-import spotifycontrols.play
-import spotifycontrols.queue
-import spotifycontrols.status """
 import set_credentials
 import spotify_play
 import spotify_queue
@@ -62,13 +50,9 @@ def arg_selector(parser):
     args = parser.parse_args()
     # Spotify Client
     sp: spotipy.Spotify = set_credentials.set_credentials()
-    #sp: spotipy.Spotify = spotify_controls.set_credentials()
-    #sp: spotipy.Spotify = spotifycontrols.set_credentials()
 
     if args.command in ["play", "p"]:
         player = spotify_play.spotify_play(sp)
-        #player = spotify_controls.spotify_play(sp)
-        #player = spotifycontrols.spotify_play(sp)
         if args.song:
             player.play_track(args.song)
         elif args.album:
@@ -85,8 +69,6 @@ def arg_selector(parser):
 
     elif args.command in ["queue", "q"]:
         queuer = spotify_queue.spotify_queue(sp)
-        #queuer = spotify_controls.spotify_queue(sp)
-        #queuer = spotifycontrols.spotify_queue(sp)
         if args.song:
             queuer.queue_track(args.song)
         elif args.album:
@@ -101,28 +83,23 @@ def arg_selector(parser):
     elif args.command in ["next", "n"]:
         sp.next_track()
         current_status = spotify_status.spotify_status(sp)
-        #current_status = spotify_controls.spotify_status(sp)
-        #current_status = spotifycontrols.spotify_status(sp)
         current_status.status(True)
 
     elif args.command in ["back", "b"]:
         sp.previous_track()
         current_status = spotify_status.spotify_status(sp)
-        #current_status = spotify_controls.spotify_status(sp)
-        #current_status = spotifycontrols.spotify_status(sp)
         current_status.status(True)
 
     elif args.command in ["status", "s"]:
         current_status = spotify_status.spotify_status(sp)
-        #current_status = spotify_controls.spotify_status(sp)
-        #current_status = spotifycontrols.spotify_status(sp)
         current_status.status()
 
     elif args.command in ["volume", "v"]:
         if args.level:
             sp.volume(args.level)
         else:
-            return parser.print_help()
+            # Print the current volume
+            cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
 
     elif args.command in ["toggle", "t"]:
         if args.shuffle:
