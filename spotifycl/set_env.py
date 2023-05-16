@@ -2,7 +2,7 @@ from os.path import dirname, join, isfile
 
 
 def set_env(self):
-    ENV_PATH = join(dirname(dirname(__file__)), '.env')
+    ENV_PATH = join(dirname(__file__), '.env')
     if isfile(ENV_PATH):
         return
     

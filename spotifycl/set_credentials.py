@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 
 def set_credentials():
-    ENV_PATH = join(dirname(dirname(__file__)), '.env')
+    ENV_PATH = join(dirname(__file__), '.env')
     if not isfile(ENV_PATH):
         print(".env file not found")
         exit()

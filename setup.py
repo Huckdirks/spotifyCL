@@ -8,8 +8,8 @@ with open(README_PATH, "r") as fh:
     LONG_DESCRIPTION = fh.read()
 
 setup(
-    name = "spotify-cl",
-	version = "1.0.0.17",
+    name = "spotifycl",
+	version = "1.0.0.19",
     author = "Huck Dirksmeier",
     author_email = "Huckdirks@gmail.com",
     description = "A command line interface for Spotify",
