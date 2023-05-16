@@ -8,14 +8,14 @@ with open(README_PATH, "r") as fh:
     LONG_DESCRIPTION = fh.read()
 
 setup(
-    name = "spotifycl",
-	version = "0.0.14",
+    name = "spotifyCL",
+	version = "1.0.0",
     author = "Huck Dirksmeier",
     author_email = "Huckdirks@gmail.com",
     description = "A command line interface for Spotify",
     long_description = LONG_DESCRIPTION,
     long_description_content_type = "text/markdown",
-    url = "https://github.com/Huckdirks/spotify-cl",
+    url = "https://github.com/Huckdirks/spotifyCL",
     packages = find_packages(),
     install_requires = ["python-dotenv", "spotipy", "termcolor"],
     entry_points = {

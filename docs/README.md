@@ -22,7 +22,7 @@
 
 ## Introduction
 
-While working on my previous project: [text-excuse-generator](https://github.com/Huckdirks/text-excuse-generator), I just published my first package to [PyPi](https://pypi.org/project/text-excuse-generator/). I quickly realized that I wasn't going to be able to remember the command line arguments to pass into the required fields, and that I was bound to forget to change the version manually in the `setup.py` file every time I updated the package. So I decided to make a program that would automatically update the version number in the `setup.py` file and export a project to [PyPi](https://pypi.org/). I also added another script that would automatically create a `setup.py` file for me with the required fields.
+A bit ago, I installed [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) onto my mac, and while looking at the plugins I stumbled across the [macos plugin](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos). There also was a sub-plugin in there to control [Spotify from the command line](https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/macos/spotify), but I didn't like it for two main reasons: it controlled Spotify through AppleScript as opposed to the Spotify API, and it didn't have the feature to queue songs. I would've been able to live with the first reason, since I only have my macbook, but not being able to queue songs was a deal breaker for me, as I'm not trying to delete my whole queue or switch to a different playlist every time I want to listen to a song. So I decided to make my own command line program to control Spotify! Unlike the ohmyzsh plugin, this program uses the Spotify API to control Spotify, so any computer that has Python and Spotify installed can use this program.
 
 ## Installation & Setup
 
@@ -42,7 +42,7 @@ To setup the program, you need to have a spotify account (obviously), and you'll
 
 ## Uses
 
-You can run the program by typing `spotifycl` into your terminal. You can also run the program with the `-h` or `--help` flag to get a list of all the commands and their descriptions.
+You can run the program by typing `spotifycl` into your terminal. You can also run the program with the `-h` or `--help` flag to get a list of all the commands and their descriptions. Spotify needs to be open and running on a device for the program to work.
 
 Try to be as descriptive as possible when passing in the name of a playlist, album, artist, or song, because the program will find the first item that matches the name you pass in. And make sure you put quotes around any arguments that have any spaces. For example, if I try to play [Time by Pink Floyd](https://open.spotify.com/track/3TO7bbrUKrOSPGRTB5MeCz?si=99b89a567d294c81) by running [`spotifycl play time`](#play-song), it plays [Time of Our Lives by Pitbull](https://open.spotify.com/track/2bJvI42r8EF3wxjOuDav4r?si=f9995536185d4feb). While I love some Pitbull, that's not what I wanted to listen to. So if I run [`spotifycl play "time pink floyd"`](#play-song), it plays [Time by Pink Floyd](https://open.spotify.com/track/3TO7bbrUKrOSPGRTB5MeCz?si=99b89a567d294c81).
 
@@ -151,7 +151,7 @@ spotifycl q -u "uri"
 This command will skip to the next song in the queue.
 
 ```bash
-spotifycl next/n
+spotifycl n/next
 ```
 
 #### back
@@ -159,7 +159,7 @@ spotifycl next/n
 This command will go back to the previous song in the queue.
 
 ```bash
-spotifycl back/b
+spotifycl b/back
 ```
 
 #### status
@@ -167,7 +167,7 @@ spotifycl back/b
 This command will print out the information about the current song.
 
 ```bash
-spotifycl status/s
+spotifycl s/status
 ```
 
 It prints out the song, artist, album, and the current time of the song.
@@ -177,7 +177,7 @@ It prints out the song, artist, album, and the current time of the song.
 This command will either set the volume to the number you pass in, or it will print out the current volume.
 
 ```bash
-spotifycl volume/v [number]
+spotifycl v/volume [number]
 ```
 
 #### shuffle & repeat
@@ -185,18 +185,18 @@ spotifycl volume/v [number]
 These commands will either turn on or off shuffle and repeat.
 
 ```bash
-spotifycl toggle/t [-s/--shuffle] [-r/--repeat]
+spotifycl t/toggle [-s/--shuffle] [-r/--repeat]
 ```
 
 ## Quality Assurance
 
 All variable, function, class, module, & file names are written in [snake_case](https://en.wikipedia.org/wiki/Snake_case) to make sure everything is consistent, and all `const` variables are written in ALL-CAPS. The variable names are quite verbose, so it should be easy enough to understand what's going on.
 
-If there are any other/better ways to check for quality assurance, please let me know in the [suggestions](https://github.com/Huckdirks/auto-pip-exporter/discussions/new?category=suggestions)!
+If there are any other/better ways to check for quality assurance, please let me know in the [suggestions](https://github.com/Huckdirks/spotifyCL/discussions/new?category=suggestions)!
 
 ## Suggestions
 
-If you have any suggestions about anything, please create a [new discussion in suggestions](https://github.com/Huckdirks/auto-pip-exporter/discussions/new?category=suggestions).
+If you have any suggestions about anything, please create a [new discussion in suggestions](https://github.com/Huckdirks/spotifyCL/discussions/new?category=suggestions).
 
 ## Contributing
 
