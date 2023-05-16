@@ -7,9 +7,13 @@ def set_env(self):
         return
     
     print(".env file not found")
+    print("To use this program, you need to set up a Spotify Developer Account & App here:")
+    print("https://developer.spotify.com/dashboard/create")
+    print("Then, get the following information from the app's settings page and input it below:")
     SPOTIPY_CLIENT_ID = input("Enter your Spotify Client ID: ")
     SPOTIPY_CLIENT_SECRET = input("Enter your Spotify Client Secret: ")
     SPOTIPY_REDIRECT_URI = input("Enter your Spotify Redirect URI: ")
+
     ENV_TEXT = ["# Spotify",
                 f"SPOTIPY_CLIENT_ID=\"{SPOTIPY_CLIENT_ID}\"",
                 f"SPOTIPY_CLIENT_SECRET=\"{SPOTIPY_CLIENT_SECRET}\"",
@@ -18,5 +22,6 @@ def set_env(self):
     
     with open(ENV_PATH, 'w') as dotenv:
         dotenv.writelines('\n'.join(ENV_TEXT))
+
     print("Environment variables set successfully")
     return
