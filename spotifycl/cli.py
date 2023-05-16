@@ -4,7 +4,7 @@ import spotipy
 from termcolor import cprint
 
 # Local
-# Will break if you try to run locally because of the . but it makes it work as a package
+# Will break if you try to run by calling python/3 because of the . but it makes it work as a package
 from .set_credentials import set_credentials
 from .spotify_play import spotify_play
 from .spotify_queue import spotify_queue
