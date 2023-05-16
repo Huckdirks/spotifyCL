@@ -4,10 +4,10 @@ import spotipy
 from termcolor import cprint
 
 # Local
-import set_credentials
-import spotify_play
-import spotify_queue
-import spotify_status
+from set_credentials import set_credentials
+from spotify_play import spotify_play
+from spotify_queue import spotify_queue
+from spotify_status import spotify_status
 
 
 def parse_args(self):
@@ -49,10 +49,12 @@ def parse_args(self):
 def arg_selector(parser):
     args = parser.parse_args()
     # Spotify Client
-    sp: spotipy.Spotify = set_credentials.set_credentials()
+    #sp: spotipy.Spotify = set_credentials.set_credentials()
+    sp: spotipy.Spotify = set_credentials()
 
     if args.command in ["play", "p"]:
-        player = spotify_play.spotify_play(sp)
+        #player = spotify_play.spotify_play(sp)
+        player = spotify_play(sp)
         if args.song:
             player.play_track(args.song)
         elif args.album:
@@ -68,7 +70,8 @@ def arg_selector(parser):
 
 
     elif args.command in ["queue", "q"]:
-        queuer = spotify_queue.spotify_queue(sp)
+        #queuer = spotify_queue.spotify_queue(sp)
+        queuer = spotify_queue(sp)
         if args.song:
             queuer.queue_track(args.song)
         elif args.album:
@@ -82,16 +85,19 @@ def arg_selector(parser):
 
     elif args.command in ["next", "n"]:
         sp.next_track()
-        current_status = spotify_status.spotify_status(sp)
+        #current_status = spotify_status.spotify_status(sp)
+        current_status = spotify_status(sp)
         current_status.status(True)
 
     elif args.command in ["back", "b"]:
         sp.previous_track()
-        current_status = spotify_status.spotify_status(sp)
+        #current_status = spotify_status.spotify_status(sp)
+        current_status = spotify_status(sp)
         current_status.status(True)
 
     elif args.command in ["status", "s"]:
-        current_status = spotify_status.spotify_status(sp)
+        #current_status = spotify_status.spotify_status(sp)
+        current_status = spotify_status(sp)
         current_status.status()
 
     elif args.command in ["volume", "v"]:
