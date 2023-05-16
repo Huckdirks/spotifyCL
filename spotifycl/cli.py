@@ -4,10 +4,14 @@ import spotipy
 from termcolor import cprint
 
 # Local
-from set_credentials import set_credentials
+""" from set_credentials import set_credentials
 from spotify_play import spotify_play
 from spotify_queue import spotify_queue
-from spotify_status import spotify_status
+from spotify_status import spotify_status """
+from .set_credentials import set_credentials
+from .spotify_play import spotify_play
+from .spotify_queue import spotify_queue
+from .spotify_status import spotify_status
 
 
 def parse_args(self):

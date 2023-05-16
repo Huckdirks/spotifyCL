@@ -3,8 +3,10 @@ import spotipy
 from termcolor import cprint
 
 # Local Files
-from search import search
-from spotify_status import spotify_status
+""" from search import search
+from spotify_status import spotify_status """
+from .search import search
+from .spotify_status import spotify_status
 
 class spotify_play:
     def __init__(self, sp: spotipy.Spotify):

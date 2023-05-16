@@ -1,12 +1,17 @@
 
 class spotify_cli:
-    from set_env import set_env
-    from cli import parse_args
+    from .set_env import set_env
+    from .cli import parse_args
 
     def __init__(self):
         self.set_env()
         self.parse_args()
 
 
-if __name__ == "__main__":
+# Script entry point
+def main():
     spotify_cli()
+
+
+if __name__ == "__main__":
+    main()

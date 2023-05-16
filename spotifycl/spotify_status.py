@@ -1,4 +1,3 @@
-#import spotipy
 from termcolor import cprint
 
 class spotify_status:
