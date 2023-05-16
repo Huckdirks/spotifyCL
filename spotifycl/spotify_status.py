@@ -1,10 +1,9 @@
+import spotipy
 from termcolor import cprint
 
 class spotify_status:
-    #def __init__(self, sp: spotipy.Spotify):
-    def __init__(self, sp):
-        #self.sp: spotipy.Spotify = sp
-        self.sp = sp
+    def __init__(self, sp: spotipy.Spotify):
+        self.sp: spotipy.Spotify = sp
 
     def convert_duration(self, progress: int, duration: int):
         # Convert the progress and duration from ms to minutes and seconds
@@ -21,8 +20,6 @@ class spotify_status:
             return f"{progress_min}:{progress_sec} / {duration_min}:0{duration_sec}"
 
         
-
-    #def status(self, SONG_CHANGE: bool = False):
     def status(self, SONG_CHANGE: bool = False):
         status = self.sp.current_playback()
         if status is None:

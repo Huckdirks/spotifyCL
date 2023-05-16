@@ -11,7 +11,3 @@ class spotify_cli:
 # Script entry point
 def main():
     spotify_cli()
-
-
-if __name__ == "__main__":
-    main()

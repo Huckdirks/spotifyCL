@@ -9,7 +9,7 @@ with open(README_PATH, "r") as fh:
 
 setup(
     name = "spotifycl",
-	version = "0.0.5",
+	version = "0.0.6",
     author = "Huck Dirksmeier",
     author_email = "Huckdirks@gmail.com",
     description = "A command line interface for Spotify",
@@ -17,14 +17,12 @@ setup(
     long_description_content_type = "text/markdown",
     url = "https://github.com/Huckdirks/spotify-cl",
     packages = find_packages(),
-    #packages=["spotifycl", "spotifycl.spotifycontrols"],
     install_requires = ["python-dotenv", "spotipy", "termcolor"],
     entry_points = {
         "console_scripts": [
             "spotifycl = spotifycl.spotify:main"
         ]
     },
-    #scripts=["spotify-cl/spotify"],
     keywords = ["Spotify", "API", "Spotify API", "Web API"],
     classifiers = [
         "Programming Language :: Python",
@@ -32,5 +30,4 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires = ">=3.8",
-    #py_modules = ["spotifycl", "spotifycl.spotifycontrols"]
 )
