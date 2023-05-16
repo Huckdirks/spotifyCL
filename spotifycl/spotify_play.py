@@ -4,12 +4,10 @@ from termcolor import cprint
 
 # Local Files
 from .search import search
-from .spotify_status import spotify_status
 
 class spotify_play:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
-        self.status = spotify_status(self.sp)
 
     def play_pause(self):
         # If the song is playing, pause it

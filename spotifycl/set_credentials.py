@@ -11,6 +11,6 @@ def set_credentials():
         exit()
     
     load_dotenv(ENV_PATH)
-    scope = "user-read-playback-state user-modify-playback-state"
-    sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
+    SCOPE = "user-read-playback-state user-modify-playback-state"
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=SCOPE))
     return sp
