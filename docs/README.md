@@ -54,7 +54,7 @@ There are 6 different ways to use the `play` command: [play](#play-1), [play son
 
 You can run any of them like so:
 ```bash
-spotifycl play [--album/--band/--playlist/--uri] [song/album/band/playlist/uri]
+spotifycl play {--album|--band|--playlist|--uri} {song|album|band|playlist|uri}
 ```
 
 ##### play
@@ -111,7 +111,7 @@ There are 4 different ways to use the `queue` command: [queue song](#queue-song)
 
 You can run any of them like so:
 ```bash
-spotifycl queue [--album/--playlist/--uri] song/[album/playlist/uri]
+spotifycl queue {--album|--playlist|--uri} {song|album|playlist|uri}
 ```
 
 ##### queue song
@@ -151,7 +151,7 @@ spotifycl q -u "uri"
 This command will skip to the next song in the queue.
 
 ```bash
-spotifycl n/next
+spotifycl {n|next}
 ```
 
 #### back
@@ -159,7 +159,7 @@ spotifycl n/next
 This command will go back to the previous song in the queue.
 
 ```bash
-spotifycl b/back
+spotifycl {b|back}
 ```
 
 #### status
@@ -167,7 +167,7 @@ spotifycl b/back
 This command will print out the information about the current song.
 
 ```bash
-spotifycl s/status
+spotifycl {s|status}
 ```
 
 It prints out the song, artist, album, and the current time of the song.
@@ -177,7 +177,7 @@ It prints out the song, artist, album, and the current time of the song.
 This command will either set the volume to the number you pass in, or it will print out the current volume.
 
 ```bash
-spotifycl v/volume [number]
+spotifycl {v|volume} [number]
 ```
 
 #### shuffle & repeat
@@ -185,7 +185,7 @@ spotifycl v/volume [number]
 These commands will either turn on or off shuffle and repeat.
 
 ```bash
-spotifycl t/toggle {-s/--shuffle|-r/--repeat}
+spotifycl t/toggle {-s|--shuffle|-r|--repeat}
 ```
 
 ## Quality Assurance
