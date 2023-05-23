@@ -185,7 +185,7 @@ spotifycl {v|volume} [number]
 These commands will either turn on or off shuffle and repeat.
 
 ```bash
-spotifycl t/toggle {-s|--shuffle|-r|--repeat}
+spotifycl {t|toggle} {-s|--shuffle|-r|--repeat}
 ```
 
 ## Quality Assurance
