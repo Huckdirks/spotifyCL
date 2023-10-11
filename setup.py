@@ -9,7 +9,7 @@ with open(README_PATH, "r") as fh:
 
 setup(
     name = "spotifyCL",
-	version = "1.0.0",
+	version = "1.0.3",
     author = "Huck Dirksmeier",
     author_email = "Huckdirks@gmail.com",
     description = "A command line interface for Spotify",
@@ -20,7 +20,7 @@ setup(
     install_requires = ["python-dotenv", "spotipy", "termcolor"],
     entry_points = {
         "console_scripts": [
-            "spotifycl = spotifycl.spotify:main"
+            "spotifycl = spotifycl.cli:select_args"
         ]
     },
     keywords = ["Spotify", "API", "Spotify API", "Web API"],
