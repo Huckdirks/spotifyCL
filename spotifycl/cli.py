@@ -64,6 +64,7 @@ def select_args() -> None:
     -------
     None
     """
+    
     PARSER: argparse.ArgumentParser = set_args()
     ARGS = PARSER.parse_args()
     
