@@ -1,18 +1,21 @@
-# Libraries
+# Python Libraries
 import argparse
+
+# External Libraries
 import spotipy
 from termcolor import cprint
 
 # Local
-# Will break if you try to run by calling python/3 because of the . but it makes it work as a package
 from .set_credentials import set_credentials
-from .spotify_play import spotify_play
-from .spotify_queue import spotify_queue
-from .spotify_status import spotify_status
+from .set_env import set_env
+from .spotify_play import SpotifyPlay
+from .spotify_queue import SpotifyQueue
+from .spotify_status import SpotifyStatus
 
 
-def parse_args(self):
-    parser = argparse.ArgumentParser(prog="spotify", description="Control Spotify from the command line", epilog="Made by Huck Dirksmeier")
+def set_args() -> argparse.ArgumentParser:
+    
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(prog="spotify", description="Control Spotify from the command line", epilog="Made by Huck Dirksmeier")
     subparsers = parser.add_subparsers(dest="command")
 
     play_parser = subparsers.add_parser("play", aliases=["p"], help="Play a song, album, or playlist")
@@ -44,86 +47,89 @@ def parse_args(self):
     toggle_group.add_argument("-s", "--shuffle", action="store_true", help="Toggle shuffle")
     toggle_group.add_argument("-r", "--repeat", action="store_true", help="Toggle repeat")
 
-    return arg_selector(parser)
+    return parser
 
 
-def arg_selector(parser):
-    args = parser.parse_args()
+def select_args() -> None:
+    PARSER: argparse.ArgumentParser = set_args()
+    ARGS = PARSER.parse_args()
+    
+    set_env()
     # Spotify Client
     sp: spotipy.Spotify = set_credentials()
 
-    if args.command in ["play", "p"]:
-        player = spotify_play(sp)
-        if args.song:
-            player.play_track(args.song)
-        elif args.album:
-            player.play_album(args.album)
-        elif args.band:
-            player.play_artist(args.band)
-        elif args.playlist:
-            player.play_playlist(args.playlist)
-        elif args.uri:
-            player.play_uri(args.uri)
+    if ARGS.command in ["play", "p"]:
+        player: SpotifyPlay = SpotifyPlay(sp)
+        if ARGS.song:
+            return player.play_track(ARGS.song)
+        elif ARGS.album:
+            return player.play_album(ARGS.album)
+        elif ARGS.band:
+            return player.play_artist(ARGS.band)
+        elif ARGS.playlist:
+            return player.play_playlist(ARGS.playlist)
+        elif ARGS.uri:
+            return player.play_uri(ARGS.uri)
         else:
-            player.play_pause()
+            return player.play_pause()
 
 
-    elif args.command in ["queue", "q"]:
-        queuer = spotify_queue(sp)
-        if args.song:
-            queuer.queue_track(args.song)
-        elif args.album:
-            queuer.queue_album(args.album)
-        elif args.playlist:
-            queuer.queue_playlist(args.playlist)
-        elif args.uri:
-            queuer.queue_uri(args.uri)
+    elif ARGS.command in ["queue", "q"]:
+        queuer: SpotifyQueue = SpotifyQueue(sp)
+        if ARGS.song:
+            return queuer.queue_track(ARGS.song)
+        elif ARGS.album:
+            return queuer.queue_album(ARGS.album)
+        elif ARGS.playlist:
+            return queuer.queue_playlist(ARGS.playlist)
+        elif ARGS.uri:
+            return queuer.queue_uri(ARGS.uri)
         else:
-            return parser.print_help()
+            return PARSER.print_help()
 
-    elif args.command in ["next", "n"]:
+    elif ARGS.command in ["next", "n"]:
         sp.next_track()
-        current_status = spotify_status(sp)
-        current_status.status(True)
+        current_status: SpotifyStatus = SpotifyStatus(sp)
+        return current_status.status(True)
 
-    elif args.command in ["back", "b"]:
+    elif ARGS.command in ["back", "b"]:
         sp.previous_track()
-        current_status = spotify_status(sp)
-        current_status.status(True)
+        current_status: SpotifyStatus = SpotifyStatus(sp)
+        return current_status.status(True)
 
-    elif args.command in ["status", "s"]:
-        current_status = spotify_status(sp)
-        current_status.status()
+    elif ARGS.command in ["status", "s"]:
+        current_status: SpotifyStatus = SpotifyStatus(sp)
+        return current_status.status()
 
-    elif args.command in ["volume", "v"]:
-        if args.level:
-            sp.volume(args.level)
+    elif ARGS.command in ["volume", "v"]:
+        if ARGS.level:
+            return sp.volume(ARGS.level)
         else:
             # Print the current volume
-            cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
+            return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
 
-    elif args.command in ["toggle", "t"]:
-        if args.shuffle:
+    elif ARGS.command in ["toggle", "t"]:
+        if ARGS.shuffle:
             if sp.current_playback()["shuffle_state"] == True:
                 sp.shuffle(False)
-                cprint("Shuffle is now off", "red", attrs=["bold"])
+                return cprint("Shuffle is now off", "red", attrs=["bold"])
             else:
                 sp.shuffle(True)
-                cprint("Shuffle is now on", "green", attrs=["bold"])
+                return cprint("Shuffle is now on", "green", attrs=["bold"])
 
-        elif args.repeat:
+        elif ARGS.repeat:
             if sp.current_playback()["repeat_state"] == "off":
                 sp.repeat("context")
-                cprint("Repeat is now on", "green", attrs=["bold"])
+                return cprint("Repeat is now on", "green", attrs=["bold"])
             elif sp.current_playback()["repeat_state"] == "context":
                 sp.repeat("track")
-                cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
+                return cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
             else:
                 sp.repeat("off")
-                cprint("Repeat is now off", "red", attrs=["bold"])
+                return cprint("Repeat is now off", "red", attrs=["bold"])
 
         else:
-            return parser.print_help()
+            return PARSER.print_help()
         
     else:
-        return parser.print_help()
+        return PARSER.print_help()

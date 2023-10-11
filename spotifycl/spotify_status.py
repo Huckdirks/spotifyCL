@@ -1,14 +1,15 @@
+# External Libraries
 import spotipy
 from termcolor import cprint
 
-class spotify_status:
+class SpotifyStatus:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
 
     def convert_duration(self, PROGRESS: int, DURATION: int):
         # Convert the progress and duration from ms to minutes and seconds
-        PROGRESS_MIN, PROGRESS_SEC = divmod(PROGRESS, 60)
-        DURATION_MIN, DURATION_SEC = divmod(DURATION, 60)
+        PROGRESS_MIN, PROGRESS_SEC: int = divmod(PROGRESS, 60)
+        DURATION_MIN, DURATION_SEC: int = divmod(DURATION, 60)
 
         if PROGRESS_SEC > 10 and DURATION_SEC > 10:
             return f"{PROGRESS_MIN}:{PROGRESS_SEC} / {DURATION_MIN}:{DURATION_SEC}"

@@ -1,3 +1,4 @@
+# External Libraries
 import spotipy
 
 def search(sp: spotipy.Spotify, NAME: str, TYPE: str):

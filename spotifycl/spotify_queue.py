@@ -1,11 +1,11 @@
-# Libraries
+# External Libraries
 import spotipy
 from termcolor import cprint
 
 # Local Files
 from .search import search
 
-class spotify_queue:
+class SpotifyQueue:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
 

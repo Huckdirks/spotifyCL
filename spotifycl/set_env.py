@@ -1,11 +1,14 @@
+# Python Libraries
 from os.path import dirname, join, isfile
+
+# External Libraries
 from termcolor import cprint
 
 
-def set_env(self):
+def set_env() -> bool:
     ENV_PATH = join(dirname(__file__), '.env')
     if isfile(ENV_PATH):
-        return
+        return True
     
     #print(".env file not found")
     cprint("To use this program, you need to set up a Spotify Developer Account & App here:", "red")
@@ -22,8 +25,14 @@ def set_env(self):
                 f"SPOTIPY_REDIRECT_URI=\"{SPOTIPY_REDIRECT_URI}\""
             ]
     
-    with open(ENV_PATH, 'w') as dotenv:
-        dotenv.writelines('\n'.join(ENV_TEXT))
+    """ with open(ENV_PATH, 'w') as dotenv:
+        dotenv.writelines('\n'.join(ENV_TEXT)) """
+    try:
+        with open(ENV_PATH, 'w') as dotenv:
+            dotenv.writelines('\n'.join(ENV_TEXT))
+    except Exception as e:
+        cprint(f"Failed to write to .env file: {e}", "red", attrs=["bold"])
+        return False
 
     print("Environment variables set successfully")
-    return
+    return True
