@@ -1,4 +1,4 @@
-""" Spotify Command Line
+"""Spotify Command Line
 
 This Program allows you to control Spotify from the command line.
 

@@ -14,6 +14,13 @@ from .spotify_status import SpotifyStatus
 
 
 def set_args() -> argparse.ArgumentParser:
+    """Set the arguments for the command line interface
+    
+    Returns
+    -------
+    argparse.ArgumentParser
+        The argument parser
+    """    
     
     parser: argparse.ArgumentParser = argparse.ArgumentParser(prog="spotify", description="Control Spotify from the command line", epilog="Made by Huck Dirksmeier")
     subparsers = parser.add_subparsers(dest="command")
@@ -51,6 +58,12 @@ def set_args() -> argparse.ArgumentParser:
 
 
 def select_args() -> None:
+    """Select the arguments for the command line interface
+    
+    Returns
+    -------
+    None
+    """
     PARSER: argparse.ArgumentParser = set_args()
     ARGS = PARSER.parse_args()
     
