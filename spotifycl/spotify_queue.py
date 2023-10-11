@@ -6,10 +6,55 @@ from termcolor import cprint
 from .search import search
 
 class SpotifyQueue:
+    """
+    A class to queue songs, albums, and playlists on Spotify
+    
+    Attributes
+    ----------
+    sp : spotipy.Spotify
+        The Spotify object
+        
+    Methods
+    -------
+    queue_track(NAME: str)
+        Queue a song
+    
+    queue_album(NAME: str)
+        Queue an album
+        
+    queue_playlist(NAME: str)
+        Queue a playlist
+        
+    queue_uri(URI: str)
+        Queue a URI
+    """
+    
     def __init__(self, sp: spotipy.Spotify):
+        """
+        Parameters
+        ----------
+        sp : spotipy.Spotify
+            The Spotify object
+        """
+        
         self.sp: spotipy.Spotify = sp
 
-    def queue_track(self, NAME: str):
+    def queue_track(self, NAME: str) -> None:
+        """Queue a song
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the song is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the song to queue
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'track')
         if RESULT:
             try:
@@ -27,7 +72,22 @@ class SpotifyQueue:
             exit(1)
         return
     
-    def queue_album(self, NAME: str):
+    def queue_album(self, NAME: str) -> None:
+        """Queue an album
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the album is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the album to queue
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'album')
         if RESULT:
             try:
@@ -48,7 +108,22 @@ class SpotifyQueue:
             exit(1)
         return
     
-    def queue_playlist(self, NAME: str):
+    def queue_playlist(self, NAME: str) -> None:
+        """Queue a playlist
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the playlist is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the playlist to queue
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'playlist')
         if RESULT:
             try:
@@ -69,7 +144,22 @@ class SpotifyQueue:
             exit(1)
         return
     
-    def queue_uri(self, URI: str):
+    def queue_uri(self, URI: str) -> None:
+        """Queue a URI
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the URI is not found
+        
+        Parameters
+        ----------
+        URI : str
+            The URI to queue
+            
+        Returns
+        -------
+        None
+        """
+        
         try:
             self.sp.add_to_queue(URI)
             cprint("Spotify Queued:", "green", attrs=["bold"])
