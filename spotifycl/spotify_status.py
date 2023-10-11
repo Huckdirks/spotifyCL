@@ -3,10 +3,54 @@ import spotipy
 from termcolor import cprint
 
 class SpotifyStatus:
+    """
+    A class to get the current status of Spotify
+    
+    Attributes
+    ----------
+    sp : spotipy.Spotify
+        The Spotify object
+        
+    Methods
+    -------
+    status(SONG_CHANGE: bool = False) -> bool
+        Get the current status of Spotify and print it.
+        Returns True if a song is currently playing, False otherwise
+    
+    convert_duration(PROGRESS: int, DURATION: int) -> str
+        Convert the progress and duration from ms to minutes and seconds and return a string
+    """
+    
     def __init__(self, sp: spotipy.Spotify):
+        """
+        Parameters
+        ----------
+        sp : spotipy.Spotify
+            The Spotify object
+        """
+        
         self.sp: spotipy.Spotify = sp
 
-    def convert_duration(self, PROGRESS: int, DURATION: int):
+    def convert_duration(self, PROGRESS: int, DURATION: int) -> str:
+        """Convert the progress and duration from ms to minutes and seconds,
+        and return a string like so: "PROGRESS_MIN:PROGRESS_SEC / DURATION_MIN:DURATION_SEC"
+        
+        Example: "1:30 / 3:00"
+        
+        Parameters
+        ----------
+        PROGRESS : int
+            The progress of the song in ms
+        
+        DURATION : int
+            The duration of the song in ms
+            
+        Returns
+        -------
+        str
+            The progress and duration in minutes and seconds
+        """
+        
         # Convert the progress and duration from ms to minutes and seconds
         PROGRESS_MIN, PROGRESS_SEC = divmod(PROGRESS, 60)
         DURATION_MIN, DURATION_SEC = divmod(DURATION, 60)
@@ -21,11 +65,31 @@ class SpotifyStatus:
             return f"{PROGRESS_MIN}:{PROGRESS_SEC} / {DURATION_MIN}:0{DURATION_SEC}"
 
         
-    def status(self, SONG_CHANGE: bool = False):
+    def status(self, SONG_CHANGE: bool = False) -> bool:
+        """Print the current status of Spotify
+        
+        Example:
+            Spotify is Currently/Now Playing:
+            Song: Time
+            Artist: Pink Floyd
+            Album: The Dark Side of the Moon
+            Position: 4:20 / 6:53
+        
+        Parameters
+        ----------
+        SONG_CHANGE : bool, optional
+            Whether or not the song has changed, by default False
+            
+        Returns
+        -------
+        bool
+            True if a song is currently playing, False otherwise
+        """
+        
         STATUS = self.sp.current_playback()
         if STATUS is None:
             print("No song is currently playing")
-            return
+            return False
         
         if SONG_CHANGE:
             cprint("Spotify is Now Playing:", "green", attrs=["bold"])
@@ -37,4 +101,4 @@ class SpotifyStatus:
         cprint("Album: " + str(STATUS["item"]["album"]["name"]), "cyan")
         if not SONG_CHANGE:
             cprint("Position: " + str(self.convert_duration(int(STATUS["progress_ms"] / 1000), int(STATUS["item"]["duration_ms"] / 1000))), "cyan")
-        return
+        return True
