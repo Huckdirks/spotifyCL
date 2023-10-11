@@ -60,6 +60,8 @@ def set_args() -> argparse.ArgumentParser:
 def select_args() -> None:
     """Select the arguments for the command line interface
     
+    Will exit with an error message if there's no current Spotify session
+    
     Returns
     -------
     None
