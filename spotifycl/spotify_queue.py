@@ -16,16 +16,16 @@ class SpotifyQueue:
         
     Methods
     -------
-    queue_track(NAME: str)
+    queue_track(NAME: str) -> None
         Queue a song
     
-    queue_album(NAME: str)
+    queue_album(NAME: str) -> None
         Queue an album
         
-    queue_playlist(NAME: str)
+    queue_playlist(NAME: str) -> None
         Queue a playlist
         
-    queue_uri(URI: str)
+    queue_uri(URI: str) -> None
         Queue a URI
     """
     

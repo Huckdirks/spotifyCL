@@ -16,22 +16,22 @@ class SpotifyPlay:
         
     Methods
     -------
-    play_pause()
+    play_pause() -> None
         Play or pause the current song
     
-    play_track(NAME: str)
+    play_track(NAME: str) -> None
         Play a song
     
-    play_album(NAME: str)
+    play_album(NAME: str) -> None
         Play an album
     
-    play_artist(NAME: str)
+    play_artist(NAME: str) -> None
         Play an artist
         
-    play_playlist(NAME: str)
+    play_playlist(NAME: str) -> None
         Play a playlist
         
-    play_uri(URI: str)
+    play_uri(URI: str) -> None
         Play a URI
     """
     
