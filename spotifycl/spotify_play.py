@@ -6,11 +6,55 @@ from termcolor import cprint
 from .search import search
 
 class SpotifyPlay:
+    """
+    A class to play songs, albums, artists, and playlists on Spotify
+    
+    Attributes
+    ----------
+    sp : spotipy.Spotify
+        The Spotify object
+        
+    Methods
+    -------
+    play_pause()
+        Play or pause the current song
+    
+    play_track(NAME: str)
+        Play a song
+    
+    play_album(NAME: str)
+        Play an album
+    
+    play_artist(NAME: str)
+        Play an artist
+        
+    play_playlist(NAME: str)
+        Play a playlist
+        
+    play_uri(URI: str)
+        Play a URI
+    """
+    
     def __init__(self, sp: spotipy.Spotify):
+        """
+        Parameters
+        ----------
+        sp : spotipy.Spotify
+            The Spotify object
+        """
+        
         self.sp: spotipy.Spotify = sp
 
-    def play_pause(self):
-        # If the song is playing, pause it
+    def play_pause(self) -> None:
+        """Play or pause the current song
+        
+        Will exit with an error message if there's no current Spotify session
+        
+        Returns
+        -------
+        None
+        """
+        
         try:
             if self.sp.current_playback()['is_playing']:
                 self.sp.pause_playback()
@@ -19,8 +63,24 @@ class SpotifyPlay:
         except:
             print("No Current Spotify Session!")
             exit(1)
+        return
     
-    def play_track(self, NAME: str):
+    def play_track(self, NAME: str) -> None:
+        """Play a song 
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the song is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the song to play
+        
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'track')
         if RESULT:
             try:
@@ -38,7 +98,22 @@ class SpotifyPlay:
             exit(1)
         return
     
-    def play_album(self, NAME: str):
+    def play_album(self, NAME: str) -> None:
+        """Play an album
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the album is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the album to play
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'album')
         if RESULT:
             try:
@@ -56,7 +131,22 @@ class SpotifyPlay:
             exit(1)
         return
     
-    def play_artist(self, NAME: str):
+    def play_artist(self, NAME: str) -> None:
+        """Play an artist's music
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the artist is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the artist to play
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'artist')
         if RESULT:
             try:
@@ -73,7 +163,22 @@ class SpotifyPlay:
         return
     
     # TODO: Make this go through your playlists first, then if it can't find it, search everything
-    def play_playlist(self, NAME: str):
+    def play_playlist(self, NAME: str) -> None:
+        """Play a playlist
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the playlist is not found
+        
+        Parameters
+        ----------
+        NAME : str
+            The name of the playlist to play
+            
+        Returns
+        -------
+        None
+        """
+        
         RESULT = search(self.sp, NAME, 'playlist')
         if RESULT:
             try:
@@ -90,7 +195,22 @@ class SpotifyPlay:
             exit(1)
         return
     
-    def play_uri(self, URI: str):
+    def play_uri(self, URI: str) -> None:
+        """Play a URI
+        
+        Will exit with an error message if there's no current Spotify session,
+        or if the URI is invalid
+        
+        Parameters
+        ----------
+        URI : str
+            The URI to play
+            
+        Returns
+        -------
+        None
+        """
+        
         try:
             self.sp.start_playback(uris=[URI])
             cprint("Spotify Playing:", "green", attrs=["bold"])
