@@ -88,14 +88,22 @@ def select_args() -> None:
             return PARSER.print_help()
 
     elif ARGS.command in ["next", "n"]:
-        sp.next_track()
-        current_status: SpotifyStatus = SpotifyStatus(sp)
-        return current_status.status(True)
+        try:
+            sp.next_track()
+            current_status: SpotifyStatus = SpotifyStatus(sp)
+            return current_status.status(True)
+        except:
+            #print("No Current Spotify Session!")
+            exit(1)
 
     elif ARGS.command in ["back", "b"]:
-        sp.previous_track()
-        current_status: SpotifyStatus = SpotifyStatus(sp)
-        return current_status.status(True)
+        try:
+            sp.previous_track()
+            current_status: SpotifyStatus = SpotifyStatus(sp)
+            return current_status.status(True)
+        except:
+            #print("No Current Spotify Session!")
+            exit(1)
 
     elif ARGS.command in ["status", "s"]:
         current_status: SpotifyStatus = SpotifyStatus(sp)
@@ -103,33 +111,44 @@ def select_args() -> None:
 
     elif ARGS.command in ["volume", "v"]:
         if ARGS.level:
-            return sp.volume(ARGS.level)
+            try:
+                return sp.volume(ARGS.level)
+            except:
+                exit(1)
         else:
-            # Print the current volume
-            return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
+            try:
+                # Print the current volume
+                return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
+            except:
+                print("No Current Spotify Session!")
+                exit(1)
 
     elif ARGS.command in ["toggle", "t"]:
-        if ARGS.shuffle:
-            if sp.current_playback()["shuffle_state"] == True:
-                sp.shuffle(False)
-                return cprint("Shuffle is now off", "red", attrs=["bold"])
-            else:
-                sp.shuffle(True)
-                return cprint("Shuffle is now on", "green", attrs=["bold"])
+        try:
+            if ARGS.shuffle:
+                if sp.current_playback()["shuffle_state"] == True:
+                    sp.shuffle(False)
+                    return cprint("Shuffle is now off", "red", attrs=["bold"])
+                else:
+                    sp.shuffle(True)
+                    return cprint("Shuffle is now on", "green", attrs=["bold"])
 
-        elif ARGS.repeat:
-            if sp.current_playback()["repeat_state"] == "off":
-                sp.repeat("context")
-                return cprint("Repeat is now on", "green", attrs=["bold"])
-            elif sp.current_playback()["repeat_state"] == "context":
-                sp.repeat("track")
-                return cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
-            else:
-                sp.repeat("off")
-                return cprint("Repeat is now off", "red", attrs=["bold"])
+            elif ARGS.repeat:
+                if sp.current_playback()["repeat_state"] == "off":
+                    sp.repeat("context")
+                    return cprint("Repeat is now on", "green", attrs=["bold"])
+                elif sp.current_playback()["repeat_state"] == "context":
+                    sp.repeat("track")
+                    return cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
+                else:
+                    sp.repeat("off")
+                    return cprint("Repeat is now off", "red", attrs=["bold"])
 
-        else:
-            return PARSER.print_help()
+            else:
+                return PARSER.print_help()
+        except:
+            print("No Current Spotify Session!")
+            exit(1)
         
     else:
         return PARSER.print_help()
