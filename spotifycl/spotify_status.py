@@ -1,7 +1,8 @@
+# External Libraries
 import spotipy
 from termcolor import cprint
 
-class spotify_status:
+class SpotifyStatus:
     def __init__(self, sp: spotipy.Spotify):
         self.sp: spotipy.Spotify = sp
 
