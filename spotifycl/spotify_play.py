@@ -11,11 +11,6 @@ class SpotifyPlay:
 
     def play_pause(self):
         # If the song is playing, pause it
-        """ if self.sp.current_playback()['is_playing']:
-            self.sp.pause_playback()
-        else:
-            self.sp.start_playback()
-        return """
         try:
             if self.sp.current_playback()['is_playing']:
                 self.sp.pause_playback()
@@ -77,7 +72,7 @@ class SpotifyPlay:
             exit(1)
         return
     
-    # Make this go through your playlists first, then if it can't find it, search everything
+    # TODO: Make this go through your playlists first, then if it can't find it, search everything
     def play_playlist(self, NAME: str):
         RESULT = search(self.sp, NAME, 'playlist')
         if RESULT:
