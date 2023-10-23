@@ -3,7 +3,7 @@ import argparse
 
 # External Libraries
 import spotipy
-#from termcolor import cprint
+from rich import print as rprint
 
 # Local
 from .set_credentials import set_credentials
@@ -134,7 +134,8 @@ def select_args() -> None:
         else:
             try:
                 # Print the current volume
-                return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
+                #return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
+                return rprint(f"[cyan bold]Volume: {sp.current_playback()['device']['volume_percent']}[/cyan bold]")
             except:
                 print("No Current Spotify Session!")
                 exit(1)
