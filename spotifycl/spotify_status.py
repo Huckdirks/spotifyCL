@@ -1,6 +1,6 @@
 # External Libraries
 import spotipy
-from termcolor import cprint
+#from termcolor import cprint
 
 class SpotifyStatus:
     """

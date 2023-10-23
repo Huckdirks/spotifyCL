@@ -17,7 +17,7 @@ setup(
     long_description_content_type = "text/markdown",
     url = "https://github.com/Huckdirks/spotifyCL",
     packages = find_packages(),
-    install_requires = ["python-dotenv", "spotipy", "termcolor"],
+    install_requires = ["python-dotenv", "spotipy", "rich"],
     entry_points = {
         "console_scripts": [
             "spotifycl = spotifycl.cli:select_args"

@@ -3,7 +3,7 @@ import argparse
 
 # External Libraries
 import spotipy
-from termcolor import cprint
+#from termcolor import cprint
 
 # Local
 from .set_credentials import set_credentials
