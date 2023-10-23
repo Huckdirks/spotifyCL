@@ -87,10 +87,15 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(uris=[URI])
-                cprint("Spotify Playing:", "green", attrs=["bold"])
+                """ cprint("Spotify Playing:", "green", attrs=["bold"])
                 cprint("Song: " + str(RESULT["name"]), "cyan")
                 cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
-                cprint("Album: " + str(RESULT["album"]["name"]), "cyan")
+                cprint("Album: " + str(RESULT["album"]["name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
+                rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['album']['name']}[/bright_green]")
+                
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
@@ -125,11 +130,16 @@ class SpotifyPlay:
                 """ cprint("Spotify Playing:", "green", attrs=["bold"])
                 cprint("Album: " + str(RESULT["name"]), "cyan")
                 cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
+
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
         else:
-            print("No album found")
+            #print("No album found")
+            rprint("[red bold]No album found![/red bold]")
             exit(1)
         return
     
@@ -154,13 +164,16 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(context_uri=URI)
-                cprint("Spotify Playing:", "green", attrs=["bold"])
-                cprint("Artist: " + str(RESULT["name"]), "cyan")
+                """ cprint("Spotify Playing:", "green", attrs=["bold"])
+                cprint("Artist: " + str(RESULT["name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
         else:
-            print("No artist found")
+            #print("No artist found")
+            rprint("[red bold]No artist found![/red bold]")
             exit(1)
         return
     
@@ -186,14 +199,18 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(context_uri=URI)
-                cprint("Spotify Playing:", "green", attrs=["bold"])
+                """ cprint("Spotify Playing:", "green", attrs=["bold"])
                 cprint("Playlist: " + str(RESULT["name"]), "cyan")
-                cprint("Owner: " + str(RESULT["owner"]["display_name"]), "cyan")
+                cprint("Owner: " + str(RESULT["owner"]["display_name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[cyan bold]Playlist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Owner:[/cyan bold] [bright_green]{RESULT['owner']['display_name']}[/bright_green]")
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
         else:
-            print("No playlist found")
+            #print("No playlist found")
+            rprint("[red bold]No playlist found![/red bold]")
             exit(1)
         return
     
@@ -215,8 +232,10 @@ class SpotifyPlay:
         
         try:
             self.sp.start_playback(uris=[URI])
-            cprint("Spotify Playing:", "green", attrs=["bold"])
-            cprint("URI: " + str(URI), "cyan")
+            """ cprint("Spotify Playing:", "green", attrs=["bold"])
+            cprint("URI: " + str(URI), "cyan") """
+            rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+            rprint(f"[cyan bold]URI:[/cyan bold] [bright_green]{URI}[/bright_green]")
         except:
             #print("No Current Spotify Session!") # Spotipy already sends an error message
             exit(1)
