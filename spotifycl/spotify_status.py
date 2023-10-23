@@ -1,6 +1,6 @@
 # External Libraries
 import spotipy
-#from termcolor import cprint
+from rich import print as rprint
 
 class SpotifyStatus:
     """
@@ -30,7 +30,7 @@ class SpotifyStatus:
         
         self.sp: spotipy.Spotify = sp
 
-    def convert_duration(self, PROGRESS: int, DURATION: int) -> str:
+    def __convert_duration(self, PROGRESS: int, DURATION: int) -> str:
         """Convert the progress and duration from ms to minutes and seconds,
         and return a string like so: "PROGRESS_MIN:PROGRESS_SEC / DURATION_MIN:DURATION_SEC"
         
@@ -100,5 +100,5 @@ class SpotifyStatus:
         cprint("Artist: " + str(STATUS["item"]["artists"][0]["name"]), "cyan")
         cprint("Album: " + str(STATUS["item"]["album"]["name"]), "cyan")
         if not SONG_CHANGE:
-            cprint("Position: " + str(self.convert_duration(int(STATUS["progress_ms"] / 1000), int(STATUS["item"]["duration_ms"] / 1000))), "cyan")
+            cprint("Position: " + str(self.__convert_duration(int(STATUS["progress_ms"] / 1000), int(STATUS["item"]["duration_ms"] / 1000))), "cyan")
         return

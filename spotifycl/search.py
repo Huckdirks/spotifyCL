@@ -4,6 +4,18 @@ import spotipy
 def search(sp: spotipy.Spotify, NAME: str, TYPE: str) -> dict | None:
     """Search Spotify for a song, album, artist, or playlist
     
+    Parameters
+    ----------
+    sp : spotipy.Spotify
+        The Spotify object
+    
+    NAME : str
+        The name of the song, album, artist, or playlist to search for
+        
+    TYPE : str
+        The type of search to perform (track, album, artist, or playlist)
+        
+    
     Returns
     -------
     dict
