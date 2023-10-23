@@ -137,7 +137,8 @@ def select_args() -> None:
                 #return cprint(f"Volume: {sp.current_playback()['device']['volume_percent']}", "cyan", attrs=["bold"])
                 return rprint(f"[cyan bold]Volume: {sp.current_playback()['device']['volume_percent']}[/cyan bold]")
             except:
-                print("No Current Spotify Session!")
+                #print("No Current Spotify Session!")
+                rprint("[red bold]No Current Spotify Session![/red bold]")
                 exit(1)
 
     elif ARGS.command in ["toggle", "t"]:
@@ -145,26 +146,32 @@ def select_args() -> None:
             if ARGS.shuffle:
                 if sp.current_playback()["shuffle_state"] == True:
                     sp.shuffle(False)
-                    return cprint("Shuffle is now off", "red", attrs=["bold"])
+                    #return cprint("Shuffle is now off", "red", attrs=["bold"])
+                    return rprint("[red bold]Shuffle is now off[/red bold]")
                 else:
                     sp.shuffle(True)
-                    return cprint("Shuffle is now on", "green", attrs=["bold"])
+                    #return cprint("Shuffle is now on", "green", attrs=["bold"])
+                    return rprint("[green bold]Shuffle is now on[/green bold]")
 
             elif ARGS.repeat:
                 if sp.current_playback()["repeat_state"] == "off":
                     sp.repeat("context")
-                    return cprint("Repeat is now on", "green", attrs=["bold"])
+                    #return cprint("Repeat is now on", "green", attrs=["bold"])
+                    return rprint("[green bold]Repeat is now on[/green bold]")
                 elif sp.current_playback()["repeat_state"] == "context":
                     sp.repeat("track")
-                    return cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
+                    #return cprint("Repeat is now on (track)", "cyan", attrs=["bold"])
+                    return rprint("[cyan bold]Repeat is now on (track)[/cyan bold]")
                 else:
                     sp.repeat("off")
-                    return cprint("Repeat is now off", "red", attrs=["bold"])
+                    #return cprint("Repeat is now off", "red", attrs=["bold"])
+                    return rprint("[red bold]Repeat is now off[/red bold]")
 
             else:
                 return PARSER.print_help()
         except:
-            print("No Current Spotify Session!")
+            #print("No Current Spotify Session!")
+            rprint("[red bold]No Current Spotify Session![/red bold]")
             exit(1)
         
     else:
