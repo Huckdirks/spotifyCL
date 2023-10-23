@@ -1,6 +1,6 @@
 # External Libraries
 import spotipy
-#from termcolor import cprint
+from rich import print as rprint
 
 # Local Files
 from .search import search
@@ -60,15 +60,21 @@ class SpotifyQueue:
             try:
                 URI = RESULT['uri']
                 self.sp.add_to_queue(URI)
-                cprint("Spotify Queued:", "green", attrs=["bold"])
+                """ cprint("Spotify Queued:", "green", attrs=["bold"])
                 cprint("Song: " + str(RESULT["name"]), "cyan")
                 cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
-                cprint("Album: " + str(RESULT["album"]["name"]), "cyan")
+                cprint("Album: " + str(RESULT["album"]["name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
+                rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['album']['name']}[/bright_green]")
+                
             except:
                 #print("No Current Spotify Session!") # Spotipy already prints an error message
                 exit(1)
         else:
-            print("No song found")
+            #print("No song found")
+            rprint("[red bold]No song found![/red bold]")
             exit(1)
         return
     
@@ -97,14 +103,19 @@ class SpotifyQueue:
                 # Add all the tracks to the queue
                 for TRACK in TRACKS:
                     self.sp.add_to_queue(TRACK)
-                cprint("Spotify Queued:", "green", attrs=["bold"])
+                """ cprint("Spotify Queued:", "green", attrs=["bold"])
                 cprint("Album: " + str(RESULT["name"]), "cyan")
-                cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
+                cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
+                
             except:
                 #print("No Current Spotify Session!") # Spotipy already prints an error message
                 exit(1)
         else:
-            print("No album found")
+            #print("No album found")
+            rprint("[red bold]No album found![/red bold]")
             exit(1)
         return
     
@@ -133,14 +144,19 @@ class SpotifyQueue:
                 # Add all the tracks to the queue
                 for TRACK in TRACKS:
                     self.sp.add_to_queue(TRACK)
-                cprint("Spotify Queued:", "green", attrs=["bold"])
+                """ cprint("Spotify Queued:", "green", attrs=["bold"])
                 cprint("Playlist: " + str(RESULT["name"]), "cyan")
-                cprint("Owner: " + str(RESULT["owner"]["display_name"]), "cyan")
+                cprint("Owner: " + str(RESULT["owner"]["display_name"]), "cyan") """
+                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[cyan bold]Playlist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
+                rprint(f"[cyan bold]Owner:[/cyan bold] [bright_green]{RESULT['owner']['display_name']}[/bright_green]")
+        
             except:
                 #print("No Current Spotify Session!") # Spotipy already prints an error message
                 exit(1)
         else:
-            print("No playlist found")
+            #print("No playlist found")
+            rprint("[red bold]No playlist found![/red bold]")
             exit(1)
         return
     
@@ -162,8 +178,10 @@ class SpotifyQueue:
         
         try:
             self.sp.add_to_queue(URI)
-            cprint("Spotify Queued:", "green", attrs=["bold"])
-            cprint("URI: " + str(URI), "cyan")
+            """ cprint("Spotify Queued:", "green", attrs=["bold"])
+            cprint("URI: " + str(URI), "cyan") """
+            rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+            rprint(f"[cyan bold]URI:[/cyan bold] [bright_green]{URI}[/bright_green]")
         except:
             #print("No Current Spotify Session!") # Spotipy already prints an error message
             exit(1)

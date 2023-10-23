@@ -1,6 +1,6 @@
 # External Libraries
 import spotipy
-#from termcolor import cprint
+from rich import print as rprint
 
 # Local Files
 from .search import search
@@ -61,7 +61,8 @@ class SpotifyPlay:
             else:
                 self.sp.start_playback()
         except:
-            print("No Current Spotify Session!")
+            #print("No Current Spotify Session!")
+            rprint("[red bold]No Current Spotify Session![/red bold]")
             exit(1)
         return
     
@@ -94,7 +95,8 @@ class SpotifyPlay:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
         else:
-            print("No song found")
+            #print("No song found")
+            rprint("[red bold]No song found![/red bold]")
             exit(1)
         return
     
@@ -120,9 +122,9 @@ class SpotifyPlay:
                 URI = RESULT['uri']
                 self.sp.shuffle(state=False)
                 self.sp.start_playback(context_uri=URI)
-                cprint("Spotify Playing:", "green", attrs=["bold"])
+                """ cprint("Spotify Playing:", "green", attrs=["bold"])
                 cprint("Album: " + str(RESULT["name"]), "cyan")
-                cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan")
+                cprint("Artist: " + str(RESULT["artists"][0]["name"]), "cyan") """
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
                 exit(1)
