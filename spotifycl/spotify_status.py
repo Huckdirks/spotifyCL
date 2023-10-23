@@ -15,9 +15,6 @@ class SpotifyStatus:
     -------
     status(SONG_CHANGE: bool = False)
         Get the current status of Spotify and print it
-    
-    convert_duration(PROGRESS: int, DURATION: int) -> str
-        Convert the progress and duration from ms to minutes and seconds and return a string
     """
     
     def __init__(self, sp: spotipy.Spotify):
@@ -92,13 +89,20 @@ class SpotifyStatus:
             exit(1)
         
         if SONG_CHANGE:
-            cprint("Spotify is Now Playing:", "green", attrs=["bold"])
+            #cprint("Spotify is Now Playing:", "green", attrs=["bold"])
+            rprint("[bright_green bold]Spotify is Now Playing:[/bright_green bold]")
         else:
-            cprint("Spotify is Currently Playing:", "green", attrs=["bold"])
+            #cprint("Spotify is Currently Playing:", "green", attrs=["bold"])
+            rprint("[bright_green bold]Spotify is Currently Playing:[/bright_green bold]")
 
-        cprint("Song: " + str(STATUS["item"]["name"]), "cyan")
+        """ cprint("Song: " + str(STATUS["item"]["name"]), "cyan")
         cprint("Artist: " + str(STATUS["item"]["artists"][0]["name"]), "cyan")
-        cprint("Album: " + str(STATUS["item"]["album"]["name"]), "cyan")
+        cprint("Album: " + str(STATUS["item"]["album"]["name"]), "cyan") """
+        rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{STATUS['item']['name']}[/bright_green]")
+        rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{STATUS['item']['artists'][0]['name']}[/bright_green]")
+        rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{STATUS['item']['album']['name']}[/bright_green]")
+        
         if not SONG_CHANGE:
-            cprint("Position: " + str(self.__convert_duration(int(STATUS["progress_ms"] / 1000), int(STATUS["item"]["duration_ms"] / 1000))), "cyan")
+            #cprint("Position: " + str(self.__convert_duration(int(STATUS["progress_ms"] / 1000), int(STATUS["item"]["duration_ms"] / 1000))), "cyan")
+            rprint(f"[cyan bold]Position:[/cyan bold] [bright_green]{self.__convert_duration(int(STATUS['progress_ms'] / 1000), int(STATUS['item']['duration_ms'] / 1000))}[/bright_green]")
         return
