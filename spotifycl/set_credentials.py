@@ -21,7 +21,6 @@ def set_credentials() -> spotipy.Spotify:
     
     ENV_PATH: str = f"{PROJECT_DIR}/.env"
     if not isfile(ENV_PATH):
-        #print(".env file not found")
         rprint("[red bold].env file not found![/red bold]")
         exit(1)
     
