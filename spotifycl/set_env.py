@@ -5,7 +5,7 @@ from os.path import dirname, join, isfile
 from rich import print as rprint
 from rich.prompt import Prompt
 
-def set_env():
+def set_env() -> None:
     """Set the environment variables for the Spotify API
     
     Will create a .env file if one does not exist, and will prompt the user for the necessary information
