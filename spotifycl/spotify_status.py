@@ -85,7 +85,8 @@ class SpotifyStatus:
         
         STATUS = self.sp.current_playback()
         if STATUS is None:
-            print("No song is currently playing")
+            #print("No song is currently playing")
+            rprint("[red bold]No song is currently playing![/red bold]")
             exit(1)
         
         if SONG_CHANGE:
