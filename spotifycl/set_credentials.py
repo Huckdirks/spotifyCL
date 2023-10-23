@@ -5,6 +5,7 @@ from os.path import dirname, isfile
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
+from rich import print as rprint
 
 
 def set_credentials() -> spotipy.Spotify:
@@ -20,7 +21,8 @@ def set_credentials() -> spotipy.Spotify:
     
     ENV_PATH: str = f"{PROJECT_DIR}/.env"
     if not isfile(ENV_PATH):
-        print(".env file not found")
+        #print(".env file not found")
+        rprint("[red bold].env file not found![/red bold]")
         exit(1)
     
     load_dotenv(ENV_PATH)
