@@ -13,3 +13,7 @@ To install, run:
 To use, run:
     spotifycl --help
 """
+
+__author__ = "Huck Dirksmeier"
+__version__ = "1.3.2"
+__license__ = "MIT"
