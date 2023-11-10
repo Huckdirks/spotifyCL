@@ -5,6 +5,7 @@ from os.path import dirname, join, isfile
 from rich import print as rprint
 from rich.prompt import Prompt
 
+
 def set_env() -> None:
     """Set the environment variables for the Spotify API
     

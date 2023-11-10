@@ -74,6 +74,8 @@ def select_args() -> None:
     # Spotify Client
     sp: spotipy.Spotify = set_credentials()
 
+    # TODO: Make this match/case instead of if/elif
+
     if ARGS.command in ["play", "p"]:
         player: SpotifyPlay = SpotifyPlay(sp)
         if ARGS.song:

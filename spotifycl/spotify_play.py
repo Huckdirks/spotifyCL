@@ -5,6 +5,7 @@ from rich import print as rprint
 # Local Files
 from .search import search
 
+
 class SpotifyPlay:
     """
     A class to play songs, albums, artists, and playlists on Spotify
@@ -45,6 +46,7 @@ class SpotifyPlay:
         
         self.sp: spotipy.Spotify = sp
 
+
     def play_pause(self) -> None:
         """Play or pause the current song
         
@@ -64,6 +66,7 @@ class SpotifyPlay:
             rprint("[red bold]No Current Spotify Session![/red bold]")
             exit(1)
         return
+    
     
     def play_track(self, NAME: str) -> None:
         """Play a song 
@@ -99,6 +102,7 @@ class SpotifyPlay:
             exit(1)
         return
     
+    
     def play_album(self, NAME: str) -> None:
         """Play an album
         
@@ -133,6 +137,7 @@ class SpotifyPlay:
             exit(1)
         return
     
+    
     def play_artist(self, NAME: str) -> None:
         """Play an artist's music
         
@@ -163,6 +168,7 @@ class SpotifyPlay:
             rprint("[red bold]No artist found![/red bold]")
             exit(1)
         return
+    
     
     # TODO: Make this go through your playlists first, then if it can't find it, search everything
     def play_playlist(self, NAME: str) -> None:
@@ -196,6 +202,7 @@ class SpotifyPlay:
             rprint("[red bold]No playlist found![/red bold]")
             exit(1)
         return
+    
     
     def play_uri(self, URI: str) -> None:
         """Play a URI

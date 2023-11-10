@@ -2,6 +2,7 @@
 import spotipy
 from rich import print as rprint
 
+
 class SpotifyStatus:
     """
     A class to get the current status of Spotify
@@ -26,6 +27,7 @@ class SpotifyStatus:
         """
         
         self.sp: spotipy.Spotify = sp
+        
 
     def __convert_duration(self, PROGRESS: int, DURATION: int) -> str:
         """Convert the progress and duration from ms to minutes and seconds,

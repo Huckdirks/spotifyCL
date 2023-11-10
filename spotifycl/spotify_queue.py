@@ -5,6 +5,7 @@ from rich import print as rprint
 # Local Files
 from .search import search
 
+
 class SpotifyQueue:
     """
     A class to queue songs, albums, and playlists on Spotify
@@ -38,6 +39,7 @@ class SpotifyQueue:
         """
         
         self.sp: spotipy.Spotify = sp
+        
 
     def queue_track(self, NAME: str) -> None:
         """Queue a song
@@ -72,6 +74,7 @@ class SpotifyQueue:
             rprint("[red bold]No song found![/red bold]")
             exit(1)
         return
+    
     
     def queue_album(self, NAME: str) -> None:
         """Queue an album
@@ -110,6 +113,7 @@ class SpotifyQueue:
             exit(1)
         return
     
+    
     def queue_playlist(self, NAME: str) -> None:
         """Queue a playlist
         
@@ -146,6 +150,7 @@ class SpotifyQueue:
             rprint("[red bold]No playlist found![/red bold]")
             exit(1)
         return
+    
     
     def queue_uri(self, URI: str) -> None:
         """Queue a URI
