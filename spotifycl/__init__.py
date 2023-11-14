@@ -5,7 +5,7 @@ This Program allows you to control Spotify from the command line.
 This program requires a Spotify Premium account, and these packages:
     - python-dotenv
     - spotipy
-    - termcolor
+    - rich
 
 To install, run:
     pip install spotifycl
