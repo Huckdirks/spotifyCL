@@ -53,7 +53,7 @@ class SpotifyStatus:
         PROGRESS_MIN, PROGRESS_SEC = divmod(PROGRESS, 60)
         DURATION_MIN, DURATION_SEC = divmod(DURATION, 60)
 
-        if PROGRESS_SEC > 10 and DURATION_SEC > 10:
+        if PROGRESS_SEC >= 10 and DURATION_SEC >= 10:
             return f"{PROGRESS_MIN}:{PROGRESS_SEC} / {DURATION_MIN}:{DURATION_SEC}"
         elif PROGRESS_SEC < 10 and DURATION_SEC < 10:
             return f"{PROGRESS_MIN}:0{PROGRESS_SEC} / {DURATION_MIN}:0{DURATION_SEC}"
@@ -91,9 +91,9 @@ class SpotifyStatus:
             exit(1)
         
         if SONG_CHANGE:
-            rprint("[bright_green bold]Spotify is Now Playing:[/bright_green bold]")
+            rprint("[bright_green bold underline underline]Spotify is Now Playing:[/bright_green bold underline underline]")
         else:
-            rprint("[bright_green bold]Spotify is Currently Playing:[/bright_green bold]")
+            rprint("[bright_green bold underline underline]Spotify is Currently Playing:[/bright_green bold underline underline]")
 
         rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{STATUS['item']['name']}[/bright_green]")
         rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{STATUS['item']['artists'][0]['name']}[/bright_green]")

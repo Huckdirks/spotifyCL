@@ -62,7 +62,7 @@ class SpotifyQueue:
             try:
                 URI = RESULT['uri']
                 self.sp.add_to_queue(URI)
-                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[bright_green bold underline underline]Spotify Queued:[/bright_green bold underline underline]")
                 rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
                 rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['album']['name']}[/bright_green]")
@@ -101,7 +101,7 @@ class SpotifyQueue:
                 # Add all the tracks to the queue
                 for TRACK in TRACKS:
                     self.sp.add_to_queue(TRACK)
-                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[bright_green bold underline underline]Spotify Queued:[/bright_green bold underline underline]")
                 rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
                 
@@ -139,7 +139,7 @@ class SpotifyQueue:
                 # Add all the tracks to the queue
                 for TRACK in TRACKS:
                     self.sp.add_to_queue(TRACK)
-                rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+                rprint(f"[bright_green bold underline underline]Spotify Queued:[/bright_green bold underline underline]")
                 rprint(f"[cyan bold]Playlist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Owner:[/cyan bold] [bright_green]{RESULT['owner']['display_name']}[/bright_green]")
         
@@ -170,7 +170,7 @@ class SpotifyQueue:
         
         try:
             self.sp.add_to_queue(URI)
-            rprint(f"[bright_green bold]Spotify Queued:[/bright_green bold]")
+            rprint(f"[bright_green bold underline underline]Spotify Queued:[/bright_green bold underline underline]")
             rprint(f"[cyan bold]URI:[/cyan bold] [bright_green]{URI}[/bright_green]")
         except:
             #print("No Current Spotify Session!") # Spotipy already prints an error message

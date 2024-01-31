@@ -89,7 +89,7 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(uris=[URI])
-                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[bright_green bold underline]Spotify Playing:[/bright_green bold underline]")
                 rprint(f"[cyan bold]Song:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
                 rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['album']['name']}[/bright_green]")
@@ -125,7 +125,7 @@ class SpotifyPlay:
                 URI = RESULT['uri']
                 self.sp.shuffle(state=False)
                 self.sp.start_playback(context_uri=URI)
-                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[bright_green bold underline]Spotify Playing:[/bright_green bold underline]")
                 rprint(f"[cyan bold]Album:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['artists'][0]['name']}[/bright_green]")
 
@@ -159,7 +159,7 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(context_uri=URI)
-                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[bright_green bold underline]Spotify Playing:[/bright_green bold underline]")
                 rprint(f"[cyan bold]Artist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
             except:
                 #print("No Current Spotify Session!") # Spotipy already sends an error message
@@ -192,7 +192,7 @@ class SpotifyPlay:
             try:
                 URI = RESULT['uri']
                 self.sp.start_playback(context_uri=URI)
-                rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+                rprint(f"[bright_green bold underline]Spotify Playing:[/bright_green bold underline]")
                 rprint(f"[cyan bold]Playlist:[/cyan bold] [bright_green]{RESULT['name']}[/bright_green]")
                 rprint(f"[cyan bold]Owner:[/cyan bold] [bright_green]{RESULT['owner']['display_name']}[/bright_green]")
             except:
@@ -222,7 +222,7 @@ class SpotifyPlay:
         
         try:
             self.sp.start_playback(uris=[URI])
-            rprint(f"[bright_green bold]Spotify Playing:[/bright_green bold]")
+            rprint(f"[bright_green bold underline]Spotify Playing:[/bright_green bold underline]")
             rprint(f"[cyan bold]URI:[/cyan bold] [bright_green]{URI}[/bright_green]")
         except:
             #print("No Current Spotify Session!") # Spotipy already sends an error message
